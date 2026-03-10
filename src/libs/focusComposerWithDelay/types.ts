@@ -2,7 +2,7 @@ import type {TextInput} from 'react-native';
 
 type Selection = {
     start: number;
-    end: number;
+    end?: number;
     positionX?: number;
     positionY?: number;
 };

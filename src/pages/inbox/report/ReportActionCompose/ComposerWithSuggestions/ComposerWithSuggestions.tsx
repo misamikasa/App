@@ -514,6 +514,10 @@ function ComposerWithSuggestions({
             }
 
             if (suggestionsRef.current?.triggerHotkeyActions(webEvent)) {
+                if (webEvent.key === CONST.KEYBOARD_SHORTCUTS.ESCAPE.shortcutKey) {
+                    webEvent.preventDefault();
+                    focus(false, selection);
+                }
                 return;
             }
 
@@ -635,11 +639,12 @@ function ComposerWithSuggestions({
     /**
      * Focus the composer text input
      * @param [shouldDelay=false] Impose delay before focusing the composer
+     * @param [forcedSelectionRange] Force selection range of text input
      */
-    const focus = useCallback((shouldDelay = false) => {
+    const focus = useCallback((shouldDelay = false, forcedSelectionRange?: TextSelection) => {
         // If we're stacked above another RHP, wait for the transition to complete before focusing.
         const delay = shouldDelayAutoFocusRef.current ? CONST.ANIMATED_TRANSITION : CONST.COMPOSER_FOCUS_DELAY;
-        focusComposerWithDelay(textInputRef.current, delay)(shouldDelay);
+        focusComposerWithDelay(textInputRef.current, delay)(shouldDelay, forcedSelectionRange);
     }, []);
 
     /**
