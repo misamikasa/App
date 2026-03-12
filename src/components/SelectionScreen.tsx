@@ -183,7 +183,7 @@ function SelectionScreen<T = string>({
                         shouldSingleExecuteRowSelect={shouldSingleExecuteRowSelect}
                         shouldUpdateFocusedIndex={shouldUpdateFocusedIndex}
                         alternateNumberOfSupportedLines={2}
-                        addBottomSafeAreaPadding={!errors || isEmptyObject(errors)}
+                        addBottomSafeAreaPadding
                     >
                         <ErrorMessageRow
                             errors={errors}
